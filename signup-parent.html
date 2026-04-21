@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent Registration | Gleam Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/signup-parent.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+
+    <header class="auth-header">
+        <div class="container">
+            <a href="index.html">
+                <img src="assets/images/app_logo.png" alt="Gleam Logo" class="auth-logo">
+            </a>
+        </div>
+    </header>
+
+    <main class="parent-form-wrapper">
+        <div class="parent-form-card">
+            
+            <div class="auth-titles">
+                <h1>Parent Registration</h1>
+                <p>Create an account to find the best specialized care and education for your child.</p>
+            </div>
+
+            <div id="errorMessage" class="error-alert hidden"></div>
+
+            <form class="auth-form" id="signupParentForm">
+                
+                <div class="input-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" placeholder="e.g., Mohamed Ali">
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" placeholder="name@example.com">
+                </div>
+
+                <div class="input-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" placeholder="01xxxxxxxxx">
+                </div>
+
+                <div class="input-group">
+                    <label for="governorate">Governorate / Area (Optional)</label>
+                    <select id="governorate">
+                        <option value="" disabled selected>Select your location...</option>
+                        <option value="cairo">Cairo</option>
+                        <option value="giza">Giza</option>
+                        <option value="alexandria">Alexandria</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password *</label>
+                    <input type="password" id="password" placeholder="Min 8 chars, 1 uppercase, 1 number">
+                </div>
+
+                <div class="input-group">
+                    <label for="confirmPassword">Confirm Password *</label>
+                    <input type="password" id="confirmPassword" placeholder="Re-enter password">
+                </div>
+
+               <button type="submit" class="btn-submit btn-create">
+                    Create Account
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+
+            </form>
+
+            <div class="divider"><span>Or continue with</span></div>
+            <div class="social-logins">
+                <button type="button" class="btn-social"><span class="social-text">Google</span></button>
+                <button type="button" class="btn-social"><span class="social-text">Facebook</span></button>
+                <button type="button" class="btn-social"><span class="social-text">Apple</span></button>
+            </div>
+
+            <p class="auth-footer">Already have an account? <a href="login.html">Log In</a></p>
+        </div>
+    </main>
+
+    <script type="module" src="js/signup-parent.js"></script>
+
+</body>
+</html>

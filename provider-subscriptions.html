@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gleam | Subscriptions</title>
+  <meta name="description" content="Manage subscriptions, track revenue, and monitor client plans.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/provider-home.css">
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <img src="assets/images/app_logo.png" alt="Gleam" class="logo-img">
+    <span class="logo-text">Gleam</span>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="provider-home.html" class="nav-item">
+      <span class="nav-icon">&#8962;</span>
+      <span class="nav-label">Home</span>
+    </a>
+    <a href="provider-subscriptions.html" class="nav-item active">
+      <span class="nav-icon">&#128179;</span>
+      <span class="nav-label">Subscriptions</span>
+    </a>
+    <a href="provider-add-report.html" class="nav-item">
+      <span class="nav-icon">&#128196;</span>
+      <span class="nav-label">Add Report</span>
+    </a>
+    <a href="provider-notifications.html" class="nav-item">
+      <span class="nav-icon nav-icon-bell">&#128276;<span class="notif-badge" id="notifBadge" style="display:none;">0</span></span>
+      <span class="nav-label">Notifications</span>
+    </a>
+    <a href="provider-profile.html" class="nav-item">
+      <span class="nav-icon">&#128100;</span>
+      <span class="nav-label">Profile</span>
+    </a>
+  </nav>
+  <div class="sidebar-footer">
+    <button id="logoutBtn" class="nav-item logout-item" style="width:100%; text-align:left; background:transparent;">
+      <span class="nav-icon">&#10132;</span>
+      <span class="nav-label">Log Out</span>
+    </button>
+  </div>
+</aside>
+
+<!-- MAIN WRAPPER -->
+<div class="main-wrapper">
+  <!-- TOP NAVBAR -->
+  <header class="top-navbar">
+    <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle Sidebar">&#9776;</button>
+    <div class="navbar-page-title">Subscriptions</div>
+    <div class="navbar-right">
+      <a href="provider-notifications.html" class="notif-btn" aria-label="Notifications">
+        &#128276;
+        <span class="notif-count" id="navbarNotifCount" style="display:none;">0</span>
+      </a>
+      <div class="provider-chip">
+        <div class="provider-avatar-chip" id="navAvatar">?</div>
+        <div class="provider-info-chip">
+          <span class="provider-name" id="navName">Loading...</span>
+          <span class="provider-title-chip" id="navTitle"></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- DASHBOARD MAIN -->
+  <main class="dashboard-main">
+    <section class="tab-panel active" id="tab-subscriptions">
+      <!-- Header row -->
+      <div class="tab-header">
+        <div>
+          <p class="welcome-sub">Manage your clients</p>
+          <h1 class="welcome-title">Subscriptions</h1>
+        </div>
+        <div class="sub-month-selector">
+          <span class="month-nav" onclick="changeMonth(-1)">&#8249;</span>
+          <span class="month-display" id="monthDisplay"></span>
+          <span class="month-nav" onclick="changeMonth(1)">&#8250;</span>
+        </div>
+      </div>
+
+      <!-- Top Stats -->
+      <div class="sub-stats-row">
+        <div class="sub-stat-card accent-green">
+          <div class="sub-stat-icon">&#128101;</div>
+          <div class="sub-stat-val" id="statTotalSubs">0</div>
+          <div class="sub-stat-label">Total Subscriptions</div>
+        </div>
+        <div class="sub-stat-card accent-green clickable" onclick="toggleRevenueBreakdown()">
+          <div class="sub-stat-icon">&#128176;</div>
+          <div class="sub-stat-val"><span id="statNetProfit">0</span> <small>EGP</small></div>
+          <div class="sub-stat-label">Net Profit (tap for details)</div>
+        </div>
+        <div class="sub-stat-card accent-orange">
+          <div class="sub-stat-icon">&#9203;</div>
+          <div class="sub-stat-val" id="statExpiring">0</div>
+          <div class="sub-stat-label">Expiring in 7 days</div>
+        </div>
+      </div>
+
+      <!-- Revenue Breakdown Panel -->
+      <div class="revenue-breakdown" id="revenueBreakdown" style="display:none;">
+        <div class="rb-header">
+          <span>&#128200; Revenue Breakdown</span>
+          <button onclick="toggleRevenueBreakdown()">&#10005;</button>
+        </div>
+        <p class="rb-sub">Net profit calculated after 10% Gleam platform fee</p>
+        <div class="rb-rows">
+          <div class="rb-row"><span>&#128176; Gross Revenue</span><strong id="rbGross">0 EGP</strong></div>
+          <div class="rb-divider"></div>
+          <div class="rb-row"><span>&#128197; Monthly Plans Net</span><strong id="rbMonthly">0 EGP</strong></div>
+          <div class="rb-row"><span>&#9200; Single Sessions Net</span><strong id="rbSessions">0 EGP</strong></div>
+          <div class="rb-divider"></div>
+          <div class="rb-row total"><span>&#128179; Total Net Profit</span><strong id="rbTotalNet">0 EGP</strong></div>
+        </div>
+      </div>
+
+      <!-- Filter Pills -->
+      <div class="sub-filter-bar">
+        <button class="sub-filter active" onclick="filterSubs('all', this)">All</button>
+        <button class="sub-filter" onclick="filterSubs('active', this)">Active</button>
+        <button class="sub-filter" onclick="filterSubs('ending', this)">Ending Soon</button>
+        <button class="sub-filter" onclick="filterSubs('paused', this)">Paused</button>
+        <button class="sub-filter" onclick="filterSubs('expired', this)">Expired</button>
+      </div>
+
+      <!-- Subscription Cards List -->
+      <div class="sub-cards-list" id="subCardsList">
+        <!-- Dynamically Populated -->
+        <p style="padding:20px; text-align:center; color:var(--text-muted);">Loading subscriptions...</p>
+      </div>
+
+      <!-- Empty State -->
+      <div class="sub-empty" id="subEmpty" style="display:none;">
+        <div class="cs-icon">&#128193;</div>
+        <h3>No subscriptions found</h3>
+        <p>No subscriptions match this filter for the selected month.</p>
+      </div>
+
+    </section>
+  </main>
+</div>
+
+<div id="snackbar" class="snackbar"></div>
+
+<script type="module" src="js/provider-subscriptions.js"></script>
+</body>
+</html>

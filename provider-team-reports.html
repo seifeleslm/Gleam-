@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gleam | Team Reports</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/provider-home.css">
+  <style>
+    .report-card { background: var(--white); border-radius: var(--radius-md); border: 1px solid var(--border); padding: 24px; margin-bottom: 16px; box-shadow: var(--shadow-sm); transition: var(--transition); }
+    .report-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .rc-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
+    .rc-sender { display: flex; align-items: center; gap: 12px; }
+    .rc-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg,var(--green-light),var(--green-dark)); color: #fff; display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-size: 1.1rem; }
+    .rc-title { font-weight: 700; color: var(--text-dark); font-size: 1.05rem; margin-bottom: 2px; }
+    .rc-sub { font-size: 0.85rem; color: var(--text-muted); }
+    .rc-date { font-size: 0.8rem; color: var(--text-muted); text-align: right; }
+    
+    .rc-body { font-size: 0.9rem; color: var(--text-mid); line-height: 1.6; }
+    .rc-section-title { font-weight: 600; color: var(--green-dark); margin-top: 16px; margin-bottom: 4px; display: block; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .rc-file { margin-top: 20px; padding: 12px 16px; background: var(--green-ghost); border: 1px solid var(--green-pale); border-radius: 8px; display: inline-flex; align-items: center; gap: 10px; color: var(--green-dark); font-weight: 600; text-decoration: none; transition: var(--transition); }
+    .rc-file:hover { background: var(--green-pale); }
+  </style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <img src="assets/images/app_logo.png" alt="Gleam" class="logo-img">
+    <span class="logo-text">Gleam</span>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="provider-home.html" class="nav-item">
+      <span class="nav-icon">&#8962;</span>
+      <span class="nav-label">Home</span>
+    </a>
+    <a href="provider-subscriptions.html" class="nav-item">
+      <span class="nav-icon">&#128179;</span>
+      <span class="nav-label">Subscriptions</span>
+    </a>
+    <a href="provider-add-report.html" class="nav-item">
+      <span class="nav-icon">&#128196;</span>
+      <span class="nav-label">Add Report</span>
+    </a>
+    <a href="provider-team-reports.html" class="nav-item active">
+      <span class="nav-icon">&#128101;</span>
+      <span class="nav-label">Team Reports</span>
+    </a>
+    <a href="provider-notifications.html" class="nav-item">
+      <span class="nav-icon nav-icon-bell">&#128276;<span class="notif-badge" id="notifBadge" style="display:none;">0</span></span>
+      <span class="nav-label">Notifications</span>
+    </a>
+    <a href="provider-profile.html" class="nav-item">
+      <span class="nav-icon">&#128100;</span>
+      <span class="nav-label">Profile</span>
+    </a>
+  </nav>
+  <div class="sidebar-footer">
+    <button id="logoutBtn" class="nav-item logout-item" style="width:100%; text-align:left; background:transparent;">
+      <span class="nav-icon">&#10132;</span>
+      <span class="nav-label">Log Out</span>
+    </button>
+  </div>
+</aside>
+
+<!-- MAIN WRAPPER -->
+<div class="main-wrapper">
+  <!-- TOP NAVBAR -->
+  <header class="top-navbar">
+    <button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+    <div class="navbar-page-title">Team Reports</div>
+    <div class="navbar-right">
+      <a href="provider-notifications.html" class="notif-btn" aria-label="Notifications">
+        &#128276;
+        <span class="notif-count" id="navbarNotifCount" style="display:none;">0</span>
+      </a>
+      <div class="provider-chip">
+        <div class="provider-avatar-chip" id="navAvatar">?</div>
+        <div class="provider-info-chip">
+          <span class="provider-name" id="navName">Loading...</span>
+          <span class="provider-title-chip" id="navTitle"></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- DASHBOARD MAIN -->
+  <main class="dashboard-main">
+    <section class="tab-panel active">
+      <div class="tab-header" style="display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <p class="welcome-sub">Collaborative Care</p>
+          <h1 class="welcome-title">Team Reports</h1>
+        </div>
+        <button onclick="clearAllReports()" style="padding:10px 20px; border-radius:50px; background:#fef2f2; color:#dc2626; border:1px solid #fca5a5; font-weight:600; cursor:pointer; transition:all 0.2s;">
+          &#10006; Clear All
+        </button>
+      </div>
+
+      <div id="reportsList">
+        <p style="padding:20px; text-align:center; color:var(--text-muted);">Loading team reports...</p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="snackbar" class="snackbar"></div>
+
+<script type="module" src="js/provider-team-reports.js"></script>
+</body>
+</html>

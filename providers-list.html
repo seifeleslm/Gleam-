@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gleam | Browse Providers</title>
+    <meta name="description" content="Browse verified Gleam providers by category — Doctors, Nurses, Teachers, and Coaches.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/providers-list.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-left">
+                <button class="back-btn" id="backBtn" aria-label="Go back">
+                    <span class="material-symbols-outlined">arrow_back_ios_new</span>
+                </button>
+                <div class="logo">
+                    <img src="assets/images/app_logo.png" alt="Gleam" class="logo-large">
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="action-btn" id="notifBtn" title="Notifications">
+                    <span class="material-symbols-outlined">notifications</span>
+                    <span class="badge hidden" id="notifCount">0</span>
+                </div>
+                <div class="user-profile" id="profileClick">
+                    <img id="userImg" src="assets/images/app_logo.png" alt="Profile">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== PAGE TITLE SECTION ===== -->
+    <section class="page-title-section">
+        <div class="page-title-inner">
+            <h1 id="pageTitle">Providers</h1>
+            <p id="pageSubtitle">Find the best providers for your child</p>
+        </div>
+    </section>
+
+    <!-- ===== FILTERS BAR ===== -->
+    <div class="filters-bar">
+        <div class="filters-inner">
+
+            <!-- Location Filter -->
+            <div class="filter-group">
+                <label for="locationFilter">
+                    <span class="material-symbols-outlined">location_on</span>
+                    Location
+                </label>
+                <select id="locationFilter">
+                    <option value="">All Locations</option>
+                    <option value="Alexandria">Alexandria</option>
+                    <option value="Aswan">Aswan</option>
+                    <option value="Asyut">Asyut</option>
+                    <option value="Beheira">Beheira</option>
+                    <option value="Beni Suef">Beni Suef</option>
+                    <option value="Cairo">Cairo</option>
+                    <option value="Dakahlia">Dakahlia</option>
+                    <option value="Damietta">Damietta</option>
+                    <option value="Faiyum">Faiyum</option>
+                    <option value="Gharbia">Gharbia</option>
+                    <option value="Giza">Giza</option>
+                    <option value="Ismailia">Ismailia</option>
+                    <option value="Kafr El Sheikh">Kafr El Sheikh</option>
+                    <option value="Luxor">Luxor</option>
+                    <option value="Matrouh">Matrouh</option>
+                    <option value="Minya">Minya</option>
+                    <option value="Monufia">Monufia</option>
+                    <option value="New Valley">New Valley</option>
+                    <option value="North Sinai">North Sinai</option>
+                    <option value="Port Said">Port Said</option>
+                    <option value="Qalyubia">Qalyubia</option>
+                    <option value="Qena">Qena</option>
+                    <option value="Red Sea">Red Sea</option>
+                    <option value="Sharqia">Sharqia</option>
+                    <option value="Sohag">Sohag</option>
+                    <option value="South Sinai">South Sinai</option>
+                    <option value="Suez">Suez</option>
+                </select>
+            </div>
+
+            <div class="filter-divider"></div>
+
+            <!-- Price Sort Filter -->
+            <div class="filter-group">
+                <label for="priceFilter">
+                    <span class="material-symbols-outlined">payments</span>
+                    Price
+                </label>
+                <select id="priceFilter">
+                    <option value="">Default</option>
+                    <option value="low">Low to High</option>
+                    <option value="high">High to Low</option>
+                </select>
+            </div>
+
+            <!-- Result count -->
+            <div class="result-count" id="resultCount"></div>
+        </div>
+    </div>
+
+    <!-- ===== PROVIDERS GRID ===== -->
+    <main class="providers-main">
+
+        <!-- Loading skeleton -->
+        <div class="providers-grid" id="providersGrid">
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+        </div>
+
+        <!-- Empty / Error state -->
+        <div class="empty-state hidden" id="emptyState">
+            <span class="material-symbols-outlined">search_off</span>
+            <h3 id="emptyTitle">No providers found</h3>
+            <p id="emptyMsg">Try adjusting your filters.</p>
+        </div>
+
+    </main>
+
+    <script type="module" src="js/providers-list.js?v=1"></script>
+</body>
+</html>

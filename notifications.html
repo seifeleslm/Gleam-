@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gleam | Notifications</title>
+    <meta name="description" content="View and manage your Gleam notifications.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/notifications.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-left">
+                <button class="back-btn" id="backBtn" aria-label="Go back">
+                    <span class="material-symbols-outlined">arrow_back_ios_new</span>
+                </button>
+                <img src="assets/images/app_logo.png" alt="Gleam" class="logo-large">
+            </div>
+            <h2 class="header-title">Notifications</h2>
+            <!-- Clear All — Dart: IconButton(Icons.delete_sweep_outlined) in AppBar actions -->
+            <button class="btn-clear-header" id="clearAllBtn" title="Clear All">
+                <span class="material-symbols-outlined">delete_sweep</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ===== UNREAD COUNT TOOLBAR ===== -->
+    <div class="toolbar-row">
+        <span class="unread-label" id="unreadLabel"></span>
+        <button class="btn-mark-all" id="markAllReadBtn">
+            <span class="material-symbols-outlined">done_all</span>
+            Mark all read
+        </button>
+    </div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="notifications-main">
+
+        <!-- Loading -->
+        <div class="loading-state" id="loadingState">
+            <span class="material-symbols-outlined spin">autorenew</span>
+            <p>Loading notifications...</p>
+        </div>
+
+        <!-- Notifications list -->
+        <div class="notifications-list hidden" id="notifList"></div>
+
+        <!-- Empty state — Dart: notifications_off_outlined -->
+        <div class="empty-state hidden" id="emptyState">
+            <span class="material-symbols-outlined">notifications_off</span>
+            <h3>No new notifications.</h3>
+            <p>Booking confirmations and updates from your providers will appear here.</p>
+        </div>
+
+    </main>
+
+    <!-- ===== CONFIRM DELETE MODAL ===== -->
+    <div class="modal-overlay hidden" id="confirmModal">
+        <div class="confirm-modal-card">
+            <div class="confirm-icon warning">
+                <span class="material-symbols-outlined">warning_amber</span>
+            </div>
+            <h2>Clear All?</h2>
+            <p>Are you sure you want to delete all notifications? This action cannot be undone.</p>
+            <div class="confirm-actions">
+                <button class="btn-cancel-modal" id="confirmCancelBtn">Cancel</button>
+                <button class="btn-delete-modal" id="confirmDeleteBtn">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/notifications.js?v=1"></script>
+</body>
+</html>

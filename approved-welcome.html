@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Approved | Gleam</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/approved.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+
+    <main class="approved-wrapper">
+        <div class="approved-card">
+            
+            <div class="success-icon-wrapper">
+                <span class="material-symbols-outlined">verified</span>
+            </div>
+
+            <div class="approved-content">
+                <h2>Welcome to Gleam!</h2>
+                
+                <h1 id="providerNameDisplay">Loading...</h1>
+                
+                <p>
+                    Your account has been officially approved. <br>
+                    You are now part of our trusted network and can start receiving bookings from parents.
+                </p>
+            </div>
+
+            <div class="approved-actions">
+                <a href="provider-home.html" class="btn-dashboard">
+                    Go to Home
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+            </div>
+
+            <div class="confetti-container" id="confetti"></div>
+        </div>
+    </main>
+<script type="module" src="js/approved.js"></script>
+</body>
+</html>

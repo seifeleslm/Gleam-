@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gleam – Children's Care &amp; Support Services</title>
+  <meta name="description" content="Egypt's #1 children's care platform. Connect with verified doctors, nurses, teachers, and coaches for your child's unique journey.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <a href="#home" class="nav-logo">
+    <img src="assets/images/app_logo.png" alt="Gleam Logo">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#providers">Providers</a></li>
+    <!-- <li><a href="#reports">Reports</a></li>
+    <li><a href="#subscriptions">Subscriptions</a></li> -->
+  </ul>
+  <div class="nav-actions">
+    <!-- Populated by main.js based on Firebase Auth state -->
+    <div id="nav-user-area">
+      <button class="btn-outline" onclick="window.location.href='login.html'">Login</button>
+      <button class="btn-solid"  onclick="window.location.href='signup.html'">Sign Up</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-badge"><span></span>Egypt's #1 Children Care Platform</div>
+    <h1 class="hero-title">Expert Care for<br><em>Every Child's</em><br>Journey</h1>
+    <p class="hero-desc">Connect with verified doctors, nurses, specialized teachers, and coaches who understand your child's unique needs.</p>
+    <div class="hero-cta">
+      <button class="btn-hero-primary" onclick="window.location.href='signup.html'">Get Started Free</button>
+      <button class="btn-hero-secondary" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Explore Services</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num">2,400+</div><div class="stat-label">Verified Providers</div></div>
+      <div class="stat-item"><div class="stat-num">18K+</div><div class="stat-label">Families Served</div></div>
+      <div class="stat-item"><div class="stat-num">4.9&#9733;</div><div class="stat-label">Average Rating</div></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card featured">
+      <div class="icon">&#128202;</div>
+      <h4>Service Provider Dashboard</h4>
+      <p>Track clients, earnings, reports &amp; subscriptions in one place.</p>
+    </div>
+    <div class="hero-card"><div class="icon">&#128104;&#8205;&#9877;</div><h4>Doctors</h4><p>Pediatric &amp; specialist doctors</p></div>
+    <div class="hero-card"><div class="icon">&#128105;&#8205;&#127979;</div><h4>Teachers</h4><p>Special needs &amp; shadow teachers</p></div>
+    <div class="hero-card"><div class="icon">&#128137;</div><h4>Nurses</h4><p>Home care &amp; vaccination nurses</p></div>
+    <div class="hero-card"><div class="icon">&#9917;</div><h4>Coaches</h4><p>Sports &amp; special needs coaches</p></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-header centered reveal">
+    <div class="section-label">What We Offer</div>
+    <h2 class="section-title">Specialized Services<br>Tailored for Children</h2>
+    <p class="section-desc">Every service is designed around your child's unique developmental journey.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal" onclick="event.preventDefault(); fetchAndShowProviders('Doctor');">
+      <div class="service-icon">&#128104;&#8205;&#9877;</div><h3>Doctor</h3>
+      <p>Pediatric doctors &amp; specialists. Clinic, home visits &amp; online consultations.</p>
+      <div class="service-link">Browse Doctors &#8594;</div>
+    </div>
+    <div class="service-card reveal" onclick="event.preventDefault(); fetchAndShowProviders('Nurse');">
+      <div class="service-icon">&#128137;</div><h3>Nurse</h3>
+      <p>Vaccination &amp; home child care nurses with full certification.</p>
+      <div class="service-link">Browse Nurses &#8594;</div>
+    </div>
+    <div class="service-card reveal" onclick="event.preventDefault(); fetchAndShowProviders('Teacher');">
+      <div class="service-icon">&#128218;</div><h3>Teacher</h3>
+      <p>Learning support &amp; special needs teachers — shadow &amp; behavioral.</p>
+      <div class="service-link">Browse Teachers &#8594;</div>
+    </div>
+    <div class="service-card reveal" onclick="event.preventDefault(); fetchAndShowProviders('Coach');">
+      <div class="service-icon">&#9917;</div><h3>Coach</h3>
+      <p>Kids sports &amp; special needs coaches for a range of activities.</p>
+      <div class="service-link">Browse Coaches &#8594;</div>
+    </div>
+  </div>
+</section>
+
+<!-- DYNAMIC PREVIEW SECTION -->
+<section class="providers-section" id="dynamic-preview-section" style="display:none; padding-top:20px; padding-bottom:80px; opacity:0; transform:translateY(30px); transition:all 0.8s cubic-bezier(0.4, 0, 0.2, 1);">
+  <div class="section-header centered reveal">
+    <div class="section-label" id="dp-label">Top Rated</div>
+    <h2 class="section-title" id="dp-title">Providers</h2>
+  </div>
+  <div class="providers-grid" id="dp-grid">
+    <!-- Cards go here -->
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works">
+  <div class="section-header centered">
+    <div class="section-label">Simple Process</div>
+    <h2 class="section-title">Get Started in Minutes</h2>
+    <p class="section-desc">Smooth, verified onboarding connects families with the right professionals fast.</p>
+  </div>
+  <div class="steps-grid">
+    <div class="step"><div class="step-num">1</div><h4>Create Account</h4><p>Sign up with email. Choose your role as provider or parent.</p></div>
+    <div class="step"><div class="step-num">2</div><h4>Complete Profile</h4><p>Fill in your specialization, credentials, availability &amp; pricing.</p></div>
+    <div class="step"><div class="step-num">3</div><h4>Get Verified</h4><p>Upload your license and ID for quick verification.</p></div>
+    <div class="step"><div class="step-num">4</div><h4>Start Serving</h4><p>Accept subscriptions, send reports, grow your client base.</p></div>
+  </div>
+</section>
+
+  <div class="filter-bar" id="filter-bar" style="display:none;">
+    <button class="filter-pill active" onclick="filterProviders('all')">All</button>
+    <button class="filter-pill" onclick="filterProviders('doctor')">Doctors</button>
+    <button class="filter-pill" onclick="filterProviders('nurse')">Nurses</button>
+    <button class="filter-pill" onclick="filterProviders('teacher')">Teachers</button>
+    <button class="filter-pill" onclick="filterProviders('coach')">Coaches</button>
+  </div>
+</section> 
+
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-header centered reveal">
+    <div class="section-label">Reviews</div>
+    <h2 class="section-title">Trusted by Families<br>Across Egypt</h2>
+  </div>
+  <!-- Static fallback; replaced by Firestore data if app_feedback docs exist -->
+  <div class="testimonials-grid" id="reviews-grid">
+    <div class="testimonial-card reveal">
+      <div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="t-text">"Gleam connected us with an amazing shadow teacher for our son. The report system keeps us updated every week."</p>
+      <div class="t-author"><div class="t-avatar">R</div><div><h5>Rania Mahmoud</h5><p>Parent &#183; Cairo</p></div></div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="t-text">"As a pediatric nurse, Gleam has given me a professional dashboard to manage all my clients. Incredibly organized."</p>
+      <div class="t-author"><div class="t-avatar">A</div><div><h5>Ahmed Karim</h5><p>Vaccination Nurse &#183; Alexandria</p></div></div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+      <p class="t-text">"Finding a football coach who specializes in special needs was impossible before Gleam. Prompt and professional."</p>
+      <div class="t-author"><div class="t-avatar">H</div><div><h5>Hana El-Sayed</h5><p>Parent &#183; Giza</p></div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <h2>Ready to Make a Difference?</h2>
+  <p>Join thousands of providers and families on Gleam &#8212; Egypt's most trusted children's care platform.</p>
+  <div class="cta-btns">
+    <button class="btn-cta-white"   onclick="window.location.href='signup.html'">Create Your Account</button>
+    <button class="btn-cta-outline" onclick="window.location.href='login.html'">Already Have an Account</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer-contact">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo">
+        <img src="assets/images/app_logo.png" alt="Gleam Logo" style="height:44px;width:auto;filter:brightness(0) invert(1);">
+      </div>
+      <p>Egypt's leading platform connecting families with verified doctors, nurses, teachers &amp; coaches for children's care.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#providers" onclick="filterProviders('doctor')">Doctors</a></li>
+        <li><a href="#providers" onclick="filterProviders('nurse')">Nurses</a></li>
+        <li><a href="#providers" onclick="filterProviders('teacher')">Teachers</a></li>
+        <li><a href="#providers" onclick="filterProviders('coach')">Coaches</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Platform</h5>
+      <ul>
+        <li><a href="#home">How It Works</a></li>
+        <li><a href="#subscriptions">Subscriptions</a></li>
+        <li><a href="#reports">Reports</a></li>
+        <li><a href="#home">Dashboard</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#footer-contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&#169; 2025 Gleam. All rights reserved.</span>
+    <span>Made with &#10084;&#65039; for Egypt's children</span>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal">
+    <div class="modal-close" onclick="closeModal()" aria-label="Close">&#10005;</div>
+    <div class="modal-step active" id="step-report">
+      <h2 id="modal-title">Add Report</h2>
+      <p class="sub-text">Send a report to the child's care team</p>
+      <div class="form-group"><label for="rpt-child">Child ID</label><input type="number" id="rpt-child" placeholder="Enter child ID"></div>
+      <div class="form-group">
+        <label for="rpt-type">Report Type</label>
+        <select id="rpt-type">
+          <option value="health">Health Report</option>
+          <option value="educational">Educational Report</option>
+          <option value="behavioral">Behavioral Report</option>
+        </select>
+      </div>
+      <div class="form-group"><label for="rpt-symptoms">Symptoms / Observations</label><input type="text" id="rpt-symptoms" placeholder="Describe symptoms&#8230;"></div>
+      <div class="form-group"><label for="rpt-notes">Notes</label><input type="text" id="rpt-notes" placeholder="Additional notes&#8230;"></div>
+      <div class="form-group"><label for="rpt-recs">Recommendations</label><input type="text" id="rpt-recs" placeholder="Recommendations&#8230;"></div>
+      <!-- Placeholder: full submission lives in the provider dashboard page -->
+      <button class="btn-submit-modal" onclick="alert('Full report submission is available inside your Provider Dashboard.')">Send Report Now</button>
+    </div>
+  </div>
+</div>
+
+<!-- ES Module entry point -->
+<script type="module" src="js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gleam | Add Report</title>
+  <meta name="description" content="Write and share reports with parents and the care team.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/provider-home.css">
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <img src="assets/images/app_logo.png" alt="Gleam" class="logo-img">
+    <span class="logo-text">Gleam</span>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="provider-home.html" class="nav-item">
+      <span class="nav-icon">&#8962;</span>
+      <span class="nav-label">Home</span>
+    </a>
+    <a href="provider-subscriptions.html" class="nav-item">
+      <span class="nav-icon">&#128179;</span>
+      <span class="nav-label">Subscriptions</span>
+    </a>
+    <a href="provider-add-report.html" class="nav-item active">
+      <span class="nav-icon">&#128196;</span>
+      <span class="nav-label">Add Report</span>
+    </a>
+    <a href="provider-notifications.html" class="nav-item">
+      <span class="nav-icon nav-icon-bell">&#128276;<span class="notif-badge" id="notifBadge" style="display:none;">0</span></span>
+      <span class="nav-label">Notifications</span>
+    </a>
+    <a href="provider-profile.html" class="nav-item">
+      <span class="nav-icon">&#128100;</span>
+      <span class="nav-label">Profile</span>
+    </a>
+  </nav>
+  <div class="sidebar-footer">
+    <button id="logoutBtn" class="nav-item logout-item" style="width:100%; text-align:left; background:transparent;">
+      <span class="nav-icon">&#10132;</span>
+      <span class="nav-label">Log Out</span>
+    </button>
+  </div>
+</aside>
+
+<!-- MAIN WRAPPER -->
+<div class="main-wrapper">
+  <!-- TOP NAVBAR -->
+  <header class="top-navbar">
+    <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle Sidebar">&#9776;</button>
+    <div class="navbar-page-title">Add Report</div>
+    <div class="navbar-right">
+      <a href="provider-notifications.html" class="notif-btn" aria-label="Notifications">
+        &#128276;
+        <span class="notif-count" id="navbarNotifCount" style="display:none;">0</span>
+      </a>
+      <div class="provider-chip">
+        <div class="provider-avatar-chip" id="navAvatar">?</div>
+        <div class="provider-info-chip">
+          <span class="provider-name" id="navName">Loading...</span>
+          <span class="provider-title-chip" id="navTitle"></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- DASHBOARD MAIN -->
+  <main class="dashboard-main">
+    <section class="tab-panel active" id="tab-report">
+      <div class="tab-header">
+        <div>
+          <p class="welcome-sub">Write &amp; share</p>
+          <h1 class="welcome-title">Add Report</h1>
+        </div>
+      </div>
+
+      <div class="report-layout">
+        <!-- LEFT COLUMN: Form -->
+        <div class="report-form-col">
+          
+          <!-- STEP 1: Patient Selection -->
+          <div class="report-section-card">
+            <div class="rsc-header">
+              <span class="rsc-step">1</span>
+              <div>
+                <div class="rsc-title">Select Patient</div>
+                <div class="rsc-sub">Choose from your active client list</div>
+              </div>
+            </div>
+            <button class="patient-selector" id="patientSelectorBtn" onclick="openPatientModal()">
+              <span class="ps-icon">&#128118;</span>
+              <span class="ps-text" id="patientSelectorText">Tap to select a patient&hellip;</span>
+              <span class="ps-arrow">&#8964;</span>
+            </button>
+          </div>
+
+          <!-- STEP 2: Report Type -->
+          <div class="report-section-card">
+            <div class="rsc-header">
+              <span class="rsc-step">2</span>
+              <div>
+                <div class="rsc-title">Report Type</div>
+                <div class="rsc-sub">Select the category of this report</div>
+              </div>
+            </div>
+            <div class="report-type-grid">
+              <label class="report-type-option active" id="rtype-health">
+                <input type="radio" name="reportType" value="health" checked onchange="selectReportType(this)">
+                <span class="rto-icon">&#128138;</span>
+                <span class="rto-label">Health</span>
+              </label>
+              <label class="report-type-option" id="rtype-educational">
+                <input type="radio" name="reportType" value="educational" onchange="selectReportType(this)">
+                <span class="rto-icon">&#128218;</span>
+                <span class="rto-label">Educational</span>
+              </label>
+              <label class="report-type-option" id="rtype-behavioral">
+                <input type="radio" name="reportType" value="behavioral" onchange="selectReportType(this)">
+                <span class="rto-icon">&#129504;</span>
+                <span class="rto-label">Behavioral</span>
+              </label>
+              <label class="report-type-option" id="rtype-sports">
+                <input type="radio" name="reportType" value="sports" onchange="selectReportType(this)">
+                <span class="rto-icon">&#9917;</span>
+                <span class="rto-label">Sports</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- STEP 3: Content -->
+          <div class="report-section-card">
+            <div class="rsc-header">
+              <span class="rsc-step">3</span>
+              <div>
+                <div class="rsc-title">Report Content</div>
+                <div class="rsc-sub">Notes &amp; recommendations</div>
+              </div>
+            </div>
+            <div class="report-fields">
+              <div class="form-group">
+                <label class="form-label" for="reportNotes">&#128203; General Notes / Observations</label>
+                <textarea id="reportNotes" class="report-textarea" rows="4" placeholder="Describe your observations, progress, symptoms, or any notable events during this period..."></textarea>
+                <div class="char-count" id="notesCount">0 / 1000</div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="reportRecs">&#128161; Recommendations for Parent &amp; Team</label>
+                <textarea id="reportRecs" class="report-textarea" rows="4" placeholder="Add any specific recommendations, exercises, follow-up actions, or next steps for the care team..."></textarea>
+                <div class="char-count" id="recsCount">0 / 1000</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 4: File Attachment -->
+          <div class="report-section-card">
+            <div class="rsc-header">
+              <span class="rsc-step">4</span>
+              <div>
+                <div class="rsc-title">File Attachment</div>
+                <div class="rsc-sub">PDF, Word, JPG, PNG supported</div>
+              </div>
+            </div>
+            <div class="file-drop-zone" id="fileDropZone" onclick="document.getElementById('fileInput').click()" ondragover="onDragOver(event)" ondrop="onFileDrop(event)">
+              <input type="file" id="fileInput" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" style="display:none" onchange="onFileSelected(this)">
+              <div class="fdz-content" id="fdzContent">
+                <div class="fdz-icon">&#128206;</div>
+                <div class="fdz-title">Click or drag &amp; drop a file here</div>
+                <div class="fdz-sub">Max file size: 10MB &nbsp;&middot;&nbsp; PDF, Word, Images</div>
+              </div>
+            </div>
+            <div class="file-attached" id="fileAttached" style="display:none">
+              <span class="file-icon">&#128196;</span>
+              <span class="file-name" id="fileName"></span>
+              <span class="file-size" id="fileSize"></span>
+              <button class="file-remove" onclick="removeFile()">&#10005;</button>
+            </div>
+          </div>
+
+          <!-- ACTION BUTTONS -->
+          <div class="report-actions">
+            <button class="btn-send-now" id="btnSendNow" onclick="submitReport()">
+              <span id="sendBtnText">&#128228; Send Report Now</span>
+              <span id="sendBtnLoader" style="display:none" class="btn-loader">Sending...</span>
+            </button>
+            <button class="btn-schedule" onclick="openScheduleModal()">&#128337; Schedule Send</button>
+            <button class="btn-reset-report" onclick="resetReportForm()">&#8635; Reset</button>
+          </div>
+
+        </div><!-- /report-form-col -->
+
+        <!-- RIGHT COLUMN: Care Team & Preview -->
+        <div class="report-side-col">
+          
+          <!-- Care Team -->
+          <div class="report-section-card" id="careTeamCard">
+            <div class="rsc-header">
+              <span class="rsc-step" style="background:#f0f4ff;color:#4338ca;">&#128101;</span>
+              <div>
+                <div class="rsc-title">Share with Care Team</div>
+                <div class="rsc-sub">Select patient first to see their team</div>
+              </div>
+            </div>
+            <div id="careTeamBody">
+              <div class="care-team-empty">
+                <span>&#128272;</span>
+                <p>Select a patient to load their assigned care team members.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Report Preview Card -->
+          <div class="report-section-card">
+            <div class="rsc-header">
+              <span class="rsc-step" style="background:#fef2f2;color:#dc2626;">&#128196;</span>
+              <div>
+                <div class="rsc-title">Report Preview</div>
+                <div class="rsc-sub">Live summary of your report</div>
+              </div>
+            </div>
+            <div class="report-preview" id="reportPreview">
+              <div class="rp-row">
+                <span class="rp-label">Patient</span>
+                <span class="rp-val" id="previewPatient">Not selected</span>
+              </div>
+              <div class="rp-row">
+                <span class="rp-label">Report Type</span>
+                <span class="rp-val" id="previewType">Health</span>
+              </div>
+              <div class="rp-row">
+                <span class="rp-label">Care Team</span>
+                <span class="rp-val" id="previewTeam">None selected</span>
+              </div>
+              <div class="rp-row">
+                <span class="rp-label">Attachment</span>
+                <span class="rp-val" id="previewFile">None</span>
+              </div>
+              <div class="rp-row">
+                <span class="rp-label">Schedule</span>
+                <span class="rp-val" id="previewSchedule">Send immediately</span>
+              </div>
+              <div class="rp-divider"></div>
+              <div class="rp-sender">
+                <div class="rp-sender-avatar" id="previewSenderAvatar">P</div>
+                <div>
+                  <div class="rp-sender-name" id="previewSenderName">Provider</div>
+                  <div class="rp-sender-title" id="previewSenderTitle">Specialist</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /report-side-col -->
+      </div><!-- /report-layout -->
+    </section>
+  </main>
+</div>
+
+<!-- PATIENT SELECTION MODAL -->
+<div class="modal-overlay" id="patientModal">
+  <div class="modal-box patient-modal-box">
+    <div class="patient-modal-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
+      <h3 style="margin:0;">&#128118; Select Patient</h3>
+      <button onclick="closePatientModal()" style="background:transparent; font-size:1.2rem; cursor:pointer;">&#10005;</button>
+    </div>
+    <div class="patient-search-wrap" style="position:relative; margin-bottom:15px;">
+      <span class="psearch-icon" style="position:absolute; left:12px; top:12px; color:var(--text-muted);">&#128269;</span>
+      <input type="text" id="patientSearch" class="patient-search-input" placeholder="Search by parent name..." oninput="filterPatients(this.value)" style="width:100%; padding:12px 12px 12px 35px; border-radius:8px; border:1px solid var(--border);">
+    </div>
+    <div class="patient-list" id="patientList" style="max-height:300px; overflow-y:auto;">
+      <p style="text-align:center; color:var(--text-muted); padding:20px;">Loading patients...</p>
+    </div>
+  </div>
+</div>
+
+<!-- SCHEDULE MODAL -->
+<div class="modal-overlay" id="scheduleModal">
+  <div class="modal-box">
+    <div class="modal-icon">&#128337;</div>
+    <h3>Schedule Report</h3>
+    <p>Choose a date and time to automatically send this report.</p>
+    <div class="schedule-inputs" style="display:flex; gap:10px; margin-bottom:20px; text-align:left;">
+      <div class="schedule-field" style="flex:1;">
+        <label style="font-size:0.8rem; font-weight:600; display:block; margin-bottom:5px;">Date</label>
+        <input type="date" id="scheduleDate" class="schedule-input" style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--border);">
+      </div>
+      <div class="schedule-field" style="flex:1;">
+        <label style="font-size:0.8rem; font-weight:600; display:block; margin-bottom:5px;">Time</label>
+        <input type="time" id="scheduleTime" class="schedule-input" style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--border);">
+      </div>
+    </div>
+    <div class="modal-actions" style="display:flex; gap:10px;">
+      <button class="modal-btn-secondary" onclick="closeScheduleModal()" style="flex:1;">Cancel</button>
+      <button class="modal-btn-primary" onclick="confirmSchedule()" style="flex:1; background:var(--green-dark); color:#fff; border-radius:50px; padding:12px; font-weight:600;">&#10003; Confirm</button>
+    </div>
+  </div>
+</div>
+
+<div id="snackbar" class="snackbar"></div>
+
+<script type="module" src="js/provider-add-report.js"></script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Provider Registration | Gleam Platform</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/signup.css">
+    <link rel="stylesheet" href="css/signup-provider-form.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+
+    <header class="auth-header">
+        <div class="container">
+            <a href="index.html">
+                <img src="assets/images/app_logo.png" alt="Gleam Logo" class="auth-logo">
+            </a>
+        </div>
+    </header>
+
+    <main class="auth-wrapper provider-form-wrapper">
+        <div class="auth-card stepped-form-card">
+            
+            <div class="stepper-header">
+                <div class="step-item active" id="step1-header"><div class="step-icon">1</div><span class="step-text">Personal</span></div>
+                <div class="step-divider"></div>
+                <div class="step-item" id="step2-header"><div class="step-icon">2</div><span class="step-text">Professional</span></div>
+                <div class="step-divider"></div>
+                <div class="step-item" id="step3-header"><div class="step-icon">3</div><span class="step-text">Work & Time</span></div>
+                <div class="step-divider"></div>
+                <div class="step-item" id="step4-header"><div class="step-icon">4</div><span class="step-text">Verify</span></div>
+            </div>
+
+            <div class="auth-titles">
+                <h1 id="formMainTitle">Provider Registration</h1>
+                <p>Complete your profile to join Gleam's trusted network.</p>
+            </div>
+
+            <div id="errorMessage" class="error-alert hidden"></div>
+
+            <form class="auth-form" id="signupProviderForm" novalidate>
+                
+                <div class="step-content active" id="step-1">
+                    <div class="grid-2-cols">
+                        <div class="input-group">
+                            <label for="gender">Title / Gender *</label>
+                            <select id="gender" required>
+                                <option value="" disabled selected>Select...</option>
+                                <option value="mr">Male</option>
+                                <option value="ms"> Female</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="fullName">Full Name *</label>
+                            <input type="text" id="fullName" placeholder="Mohamed Ali" required pattern="[A-Za-zأ-ي\s]{3,50}">
+                        </div>
+                    </div>
+
+                    <div class="grid-2-cols">
+                        <div class="input-group">
+                            <label for="governorate">Governorate *</label>
+                            <select id="governorate" required>
+                                <option value="" disabled selected>Select Governorate...</option>
+                                <option value="cairo">Cairo</option><option value="giza">Giza</option><option value="alexandria">Alexandria</option>
+                                <option value="dakahlia">Dakahlia</option><option value="red_sea">Red Sea</option><option value="beheira">Beheira</option>
+                                <option value="fayoum">Fayoum</option><option value="gharbia">Gharbia</option><option value="ismailia">Ismailia</option>
+                                <option value="menofia">Menofia</option><option value="minya">Minya</option><option value="qaliubiya">Qaliubiya</option>
+                                <option value="new_valley">New Valley</option><option value="suez">Suez</option><option value="aswan">Aswan</option>
+                                <option value="assiut">Assiut</option><option value="beni_suef">Beni Suef</option><option value="port_said">Port Said</option>
+                                <option value="damietta">Damietta</option><option value="sharkia">Sharkia</option><option value="south_sinai">South Sinai</option>
+                                <option value="kafr_el_sheikh">Kafr El Sheikh</option><option value="matrouh">Matrouh</option><option value="luxor">Luxor</option>
+                                <option value="qena">Qena</option><option value="north_sinai">North Sinai</option><option value="sohag">Sohag</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="phone">Phone Number (Optional)</label>
+                            <input type="tel" id="phone" placeholder="01xxxxxxxxx">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" placeholder="name@example.com" required>
+                    </div>
+
+                    <div class="grid-2-cols">
+                        <div class="input-group">
+                            <label for="password">Password *</label>
+                            <input type="password" id="password" placeholder="Min 8 chars, 1 uppercase, 1 number" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="confirmPassword">Confirm Password *</label>
+                            <input type="password" id="confirmPassword" placeholder="Re-enter password" required>
+                        </div>
+                    </div>
+
+                    <div class="form-navigation-alt">
+                        <button type="button" class="btn-submit btn-next" onclick="validateAndProceed(1, 2)">Next Step <span class="material-symbols-outlined">arrow_forward</span></button>
+                    </div>
+                </div>
+
+                <div class="step-content" id="step-2">
+                    <div id="dynamic-specialization-section"></div>
+
+                    <div class="input-group">
+                        <label for="experience">Years of Experience *</label>
+                        <select id="experience" required>
+                            <option value="" disabled selected>Select experience...</option>
+                            <option value="0-2">0 - 2 Years (Junior)</option>
+                            <option value="3-5">3 - 5 Years (Intermediate)</option>
+                            <option value="5-10">5 - 10 Years (Senior)</option>
+                            <option value="10+">+10 Years (Expert)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="bio">Professional Bio (Optional)</label>
+                        <textarea id="bio" placeholder="Write a catchy bio for parents..." rows="3"></textarea>
+                    </div>
+
+                    <div class="form-navigation-alt two-buttons">
+                        <button type="button" class="btn-submit btn-back" onclick="goToStep(1)">Back</button>
+                        <button type="button" class="btn-submit btn-next" onclick="validateAndProceed(2, 3)">Next Step</button>
+                    </div>
+                </div>
+
+                <div class="step-content" id="step-3">
+                    <div id="dynamic-workplace-section"></div>
+
+                    <div class="input-group">
+                        <label for="address">Specific Address / Workplace Name (Optional)</label>
+                        <input type="text" id="address" placeholder="E.g., Al Amal Hospital, Nasr City">
+                    </div>
+
+                    <div class="grid-2-cols">
+                        <div class="input-group">
+                            <label for="sessionPrice">Session Price *</label>
+                            <div class="pricing-wrapper">
+                                <input type="number" id="sessionPrice" placeholder="0" required min="10">
+                                <span class="currency-badge">EGP</span>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="monthlyPrice">Monthly Price *</label>
+                            <div class="pricing-wrapper">
+                                <input type="number" id="monthlyPrice" placeholder="0" required min="10">
+                                <span class="currency-badge">EGP</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group availability-group">
+                        <label>Availability (Select Days & Set Hours) *</label>
+                        <div class="days-grid" id="daysGrid">
+                            <div class="day-chip" data-day="sat">Sat</div>
+                            <div class="day-chip" data-day="sun">Sun</div>
+                            <div class="day-chip" data-day="mon">Mon</div>
+                            <div class="day-chip" data-day="tue">Tue</div>
+                            <div class="day-chip" data-day="wed">Wed</div>
+                            <div class="day-chip" data-day="thu">Thu</div>
+                            <div class="day-chip" data-day="fri">Fri</div>
+                        </div>
+                        <div id="timeSlotsContainer" class="time-slots-container">
+                            </div>
+                    </div>
+
+                    <div class="form-navigation-alt two-buttons">
+                        <button type="button" class="btn-submit btn-back" onclick="goToStep(2)">Back</button>
+                        <button type="button" class="btn-submit btn-next" onclick="validateAndProceed(3, 4)">Next Step</button>
+                    </div>
+                </div>
+
+                <div class="step-content" id="step-4">
+                    <div class="input-group">
+                        <label for="licenseNumber">Professional License / ID Number *</label>
+                        <div class="icon-input-wrapper">
+                            <span class="material-symbols-outlined input-icon">pin</span>
+                            <input type="text" id="licenseNumber" placeholder="Enter license or national ID number" required>
+                        </div>
+                    </div>
+
+                    <div id="verification-uploads-container"></div>
+
+                    <button type="submit" class="btn-submit btn-finish">Submit Registration</button>
+                    <div class="form-navigation-alt">
+                        <button type="button" class="btn-submit btn-back-full" onclick="goToStep(3)"><span class="material-symbols-outlined">arrow_back</span> Back</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </main>
+<script type="module" src="js/signup-provider.js"></script>
+</body>
+</html>

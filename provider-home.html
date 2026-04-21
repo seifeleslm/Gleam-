@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gleam | Provider Dashboard</title>
+  <meta name="description" content="Gleam Provider Dashboard – Manage appointments and ratings.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/provider-home.css">
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <img src="assets/images/app_logo.png" alt="Gleam" class="logo-img">
+    <span class="logo-text">Gleam</span>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="provider-home.html" class="nav-item active">
+      <span class="nav-icon">&#8962;</span>
+      <span class="nav-label">Home</span>
+    </a>
+    <a href="provider-subscriptions.html" class="nav-item">
+      <span class="nav-icon">&#128179;</span>
+      <span class="nav-label">Subscriptions</span>
+    </a>
+    <a href="provider-add-report.html" class="nav-item">
+      <span class="nav-icon">&#128196;</span>
+      <span class="nav-label">Add Report</span>
+    </a>
+    <a href="provider-notifications.html" class="nav-item">
+      <span class="nav-icon nav-icon-bell">&#128276;<span class="notif-badge" id="notifBadge" style="display:none;">0</span></span>
+      <span class="nav-label">Notifications</span>
+    </a>
+    <a href="provider-profile.html" class="nav-item">
+      <span class="nav-icon">&#128100;</span>
+      <span class="nav-label">Profile</span>
+    </a>
+  </nav>
+  <div class="sidebar-footer">
+    <button id="logoutBtn" class="nav-item logout-item" style="width:100%; text-align:left; background:transparent;">
+      <span class="nav-icon">&#10132;</span>
+      <span class="nav-label">Log Out</span>
+    </button>
+  </div>
+</aside>
+
+<!-- MAIN WRAPPER -->
+<div class="main-wrapper">
+
+  <!-- TOP NAVBAR -->
+  <header class="top-navbar">
+    <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle Sidebar">&#9776;</button>
+    <div class="navbar-page-title" id="pageTitle">Home</div>
+    <div class="navbar-right">
+      <div class="status-toggle">
+        <span class="status-dot" id="statusDot"></span>
+        <span class="status-label" id="statusLabel">Online</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="onlineToggle" checked onchange="toggleOnlineStatus(this)">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <a href="provider-notifications.html" class="notif-btn" aria-label="Notifications">
+        &#128276;
+        <span class="notif-count" id="navbarNotifCount" style="display:none;">0</span>
+      </a>
+      <div class="provider-chip">
+        <div class="provider-avatar-chip" id="navAvatar">?</div>
+        <div class="provider-info-chip">
+          <span class="provider-name" id="navName">Loading...</span>
+          <span class="provider-title-chip" id="navTitle"></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- DASHBOARD MAIN -->
+  <main class="dashboard-main">
+    <section class="tab-panel active" id="tab-home">
+      <div class="tab-header">
+        <div>
+          <p class="welcome-sub">Welcome back,</p>
+          <h1 class="welcome-title" id="welcomeTitle">Loading...</h1>
+        </div>
+        <div class="header-date" id="headerDate"></div>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="quick-stats">
+        <div class="stat-card">
+          <div class="stat-icon green-icon">&#128197;</div>
+          <div><div class="stat-value" id="statTodayBookings">0</div><div class="stat-label">Today's Bookings</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon yellow-icon">&#11088;</div>
+          <div><div class="stat-value" id="statAvgRating">0.0</div><div class="stat-label">Avg. Rating</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon indigo-icon">&#128101;</div>
+          <div><div class="stat-value" id="statActiveClients">0</div><div class="stat-label">Active Clients</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon red-icon">&#128178;</div>
+          <div><div class="stat-value"><span id="statMonthRevenue">0</span> <small>EGP</small></div><div class="stat-label">This Month</div></div>
+        </div>
+      </div>
+
+      <!-- Content Tabs -->
+      <div class="home-content-area">
+        <div class="content-tab-bar">
+          <button class="content-tab active" id="ct-appointments" onclick="switchContentTab('appointments',this)">&#128197; Appointments</button>
+          <button class="content-tab" id="ct-ratings" onclick="switchContentTab('ratings',this)">&#11088; Ratings</button>
+        </div>
+
+        <!-- APPOINTMENTS -->
+        <div class="content-panel active" id="panel-appointments">
+          <div class="date-strip-wrapper">
+            <div class="date-strip" id="dateStrip"></div>
+          </div>
+          <div class="appointments-list" id="appointmentsList">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- RATINGS -->
+        <div class="content-panel" id="panel-ratings">
+          <div class="ratings-summary">
+            <div class="rating-big-num" id="ratingBigNum">0.0</div>
+            <div class="rating-summary-right">
+              <div class="stars-row" id="ratingStarsBig">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p class="rating-count" id="ratingCountText">Based on 0 reviews</p>
+              <div class="rating-bars" id="ratingBars">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+          </div>
+          <div class="reviews-list" id="reviewsList">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- CANCEL MODAL -->
+<div class="modal-overlay" id="cancelModal">
+  <div class="modal-box">
+    <div class="modal-icon">&#10060;</div>
+    <h3>Cancel Booking</h3>
+    <p>Are you sure you want to cancel this booking? This action cannot be undone and a notification will be sent to the parent.</p>
+    <div class="modal-actions">
+      <button class="modal-btn-secondary" onclick="closeModal()">Keep Booking</button>
+      <button class="modal-btn-danger" onclick="confirmCancel()">Yes, Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div id="snackbar" class="snackbar"></div>
+
+<script type="module" src="js/provider-home.js"></script>
+</body>
+</html>

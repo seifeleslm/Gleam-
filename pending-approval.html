@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Under Review | Gleam</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pending.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+
+    <header class="auth-header">
+        <div class="container">
+            <a href="index.html">
+                <img src="assets/images/app_logo.png" alt="Gleam Logo" class="auth-logo">
+            </a>
+        </div>
+    </header>
+
+    <main class="pending-wrapper">
+        <div class="pending-card">
+            
+            <div class="status-icon-container">
+                <div class="icon-pulse-bg"></div>
+                <span class="material-symbols-outlined status-icon">pending_actions</span>
+            </div>
+
+            <div class="pending-content">
+                <h1>Application Received!</h1>
+                <h2>Your profile is under review.</h2>
+                <p>
+                    Thank you for applying to join the Gleam community. 
+                    Our admin team is currently reviewing your details and uploaded documents to ensure the highest quality of care for our parents.
+                </p>
+                
+                <div class="info-box">
+                    <span class="material-symbols-outlined">schedule</span>
+                    <span>This process usually takes <strong>24 to 48 hours</strong>. We will notify you via email once your account is approved.</span>
+                </div>
+            </div>
+
+            <div class="pending-actions">
+                <a href="index.html" class="btn-primary">Back to Home</a>
+                <a href="mailto:support@gleam.com" class="btn-secondary">Contact Support</a>
+            </div>
+
+            <div class="logout-section">
+                <a href="login.html" class="logout-link">
+                    <span class="material-symbols-outlined">logout</span>
+                    Log out from this account
+                </a>
+            </div>
+
+        </div>
+    </main>
+<script type="module" src="js/pending-check.js"></script>
+</body>
+</html>
