@@ -1,0 +1,78 @@
+/* الألوان الأساسية مستخرجة من أكواد فلاتر */
+
+/* --- Splash Screen --- */
+#splash-screen {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100vh;
+    background-color: var(--primary-dark);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.splash-content { position: relative; display: flex; justify-content: center; align-items: center; }
+
+/* الأيقونات */
+.icons-container {
+    position: absolute; width: 500px; height: 500px;
+    display: flex; justify-content: center; align-items: center;
+    animation: blenderSpin 0.8s cubic-bezier(0.5, 0, 0.5, 1) 1.6s forwards;
+}
+
+@keyframes blenderSpin {
+    0% { transform: rotate(0deg) scale(1); }
+    100% { transform: rotate(720deg) scale(0); opacity: 0; }
+}
+
+.splash-icon {
+    position: absolute; font-size: 110px; color: var(--primary-light);
+    opacity: 0; transform: translateY(50px) scale(0); 
+    animation: popUpSettle 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* توزيع الأيقونات في الأركان */
+.icon-doc { --tx: -180px; --ty: -180px; animation-delay: 0.1s; }
+.icon-nurse { --tx: 180px; --ty: -180px; animation-delay: 0.4s; }
+.icon-teacher { --tx: -180px; --ty: 180px; animation-delay: 0.7s; }
+.icon-coach { --tx: 180px; --ty: 180px; animation-delay: 1.0s; }
+
+@keyframes popUpSettle {
+    0% { transform: translate(0, 100px) scale(0); opacity: 0; }
+    100% { transform: translate(var(--tx), var(--ty)) scale(1); opacity: 1; }
+}
+
+.pop-logo {
+    position: absolute; height: 220px; opacity: 0; z-index: 10000;
+    transition: all 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: drop-shadow(0px 0px 30px rgba(255, 255, 255, 0.4));
+}
+
+/* --- Welcome Screen Content --- */
+.welcome-container {
+    height: 100vh; display: flex; flex-direction: column; align-items: center;
+    padding-top: 60px; opacity: 0; transition: opacity 0.6s ease;
+}
+
+.welcome-logo-wrapper { height: 110px; margin-bottom: 25px; visibility: hidden; }
+.welcome-logo { height: 100%; width: auto; }
+
+h1 { font-size: 55px; color: var(--primary-dark); font-weight: bold; margin-bottom: 5px; }
+.brand-name { font-size: 35px; color: var(--primary-dark); margin-bottom: 35px; }
+.instruction-text { font-size: 20px; font-weight: bold; text-align: center; margin-bottom: 45px; color: #333; }
+
+.role-selection { width: 100%; max-width: 420px; }
+
+.role-card, .role-btn { 
+    display: flex; justify-content: center; align-items: center; 
+    width: 100%; height: 75px; border-radius: 20px; text-decoration: none; 
+    font-size: 28px; font-weight: bold; margin-bottom: 22px; transition: all 0.3s;
+}
+
+.parent-card { background: white; color: var(--primary-dark); border: 4px solid var(--primary-dark); }
+.provider-btn { background: var(--primary-dark); color: white; border: none; }
+
+.role-card:hover, .role-btn:hover { transform: translateY(-8px); box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15); }
+.icon { margin-left: 18px; font-size: 35px; }
+
+.login-redirect { margin-top: 25px; font-size: 18px; font-weight: 500; }
+.login-link { color: var(--primary-light); font-weight: bold; text-decoration: none; font-size: 20px; }

@@ -1,0 +1,30 @@
+/* --- الألوان والمتغيرات الأساسية للمشروع كله --- */
+:root {
+    --primary-dark: #0D524F;
+    --primary-light: #16807A;
+    --accent: #39CB69;
+    --text-main: #1A1A1A;
+    --text-grey: #666666;
+    --glass-bg: rgba(255, 255, 255, 0.85);
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Plus Jakarta Sans', sans-serif; 
+    scroll-behavior: smooth;
+}
+
+body { 
+    background-color: #F8FAF9; 
+    color: var(--text-main); 
+    overflow-x: hidden; 
+}
+
+.container { 
+    width: 90%; 
+    max-width: 1300px; 
+    margin: 0 auto; 
+    position: relative; 
+}

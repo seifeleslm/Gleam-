@@ -1,0 +1,64 @@
+/* الاعتماد على متغيرات style.css */
+
+.auth-header { padding: 30px 0; width: 100%; text-align: center; }
+.auth-logo { height: 45px !important; width: auto; object-fit: contain; } /* اللوجو صغير ومظبوط */
+
+.parent-form-wrapper { padding: 20px 20px 80px 20px; display: flex; justify-content: center; }
+
+.parent-form-card {
+    max-width: 520px; 
+    width: 100%; margin: 0 auto; padding: 45px 40px;
+    border-radius: 28px; background: #FFFFFF;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+}
+
+.auth-titles { text-align: center; margin-bottom: 35px; }
+.auth-titles h1 { font-size: 30px; color: var(--primary-dark); font-weight: 800; margin-bottom: 10px; }
+.auth-titles p { color: var(--text-grey); font-size: 15px; font-weight: 500; line-height: 1.6; }
+
+/* الخانات تحت بعض بمسافات ممتازة */
+.input-group { margin-bottom: 25px; width: 100%; }
+.input-group label { display: block; font-size: 14px; font-weight: 700; color: var(--primary-dark); margin-bottom: 10px; }
+.input-group input, .input-group select {
+    width: 100%; border: 2px solid #EAEAEA; border-radius: 14px; padding: 16px 18px;
+    font-size: 15px; color: var(--text-main); font-weight: 600; background: #FAFAFA; transition: 0.3s;
+}
+.input-group input:focus, .input-group select:focus { outline: none; border-color: var(--primary-light); background: #FFFFFF; box-shadow: 0 0 0 4px rgba(22, 128, 122, 0.1); }
+
+/* رسالة الخطأ */
+.error-alert { background: #FDE8E8; color: #C81E1E; padding: 15px 20px; border-radius: 12px; font-weight: 600; font-size: 14px; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
+.error-alert.hidden { display: none; }
+
+/* الزرار الرئيسي */
+.btn-create { 
+    height: 60px; border-radius: 16px; font-size: 18px; font-weight: 800; cursor: pointer; 
+    display: flex; justify-content: center; align-items: center; gap: 10px; transition: 0.3s; 
+    border: none; width: 100%; background: var(--primary-dark); color: white; margin-top: 15px;
+}
+.btn-create:hover { background: var(--primary-light); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(13,82,79,0.15); }
+
+/* زراير السوشيال ميديا */
+.divider { display: flex; align-items: center; text-align: center; margin: 30px 0 25px 0; color: #A0A0A0; font-size: 14px; font-weight: 600; }
+.divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid #EAEAEA; }
+.divider:not(:empty)::before { margin-right: 15px; }
+.divider:not(:empty)::after { margin-left: 15px; }
+
+.social-logins { display: flex; gap: 12px; margin-bottom: 25px; }
+.btn-social { 
+    flex: 1; display: flex; justify-content: center; align-items: center; gap: 8px; 
+    background: #FFFFFF; border: 2px solid #EAEAEA; padding: 14px 0; border-radius: 14px; 
+    cursor: pointer; transition: 0.3s; 
+}
+.btn-social:hover { background: #F8FAF9; border-color: #D0D0D0; transform: translateY(-2px); }
+.social-text { font-weight: 700; color: #333; font-size: 14px; }
+
+/* الفوتر للرجوع */
+.auth-footer { text-align: center; margin-top: 10px; font-size: 15px; font-weight: 500; color: var(--text-grey); }
+.auth-footer a { color: var(--primary-dark); font-weight: 800; text-decoration: none; margin-left: 5px; }
+.auth-footer a:hover { text-decoration: underline; color: var(--primary-light); }
+
+.back-link-container { text-align: center; margin-top: 25px; border-top: 1px solid #EAEAEA; padding-top: 20px;}
+.back-link-alt { display: inline-flex; align-items: center; gap: 8px; color: var(--text-grey); font-weight: 600; text-decoration: none; font-size: 14px; transition: 0.3s; }
+.back-link-alt:hover { color: var(--primary-dark); }
+
+@media (max-width: 600px) { .parent-form-card { padding: 40px 25px; } .social-logins { flex-direction: column; } }

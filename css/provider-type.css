@@ -1,0 +1,97 @@
+/* --- شبكة التخصصات (4 كروت) --- */
+.specialty-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+/* --- تصميم كارت التخصص --- */
+.specialty-card {
+    background: #FFFFFF;
+    border: 2px solid #EAEAEA;
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.02);
+}
+
+.specialty-card:hover {
+    border-color: var(--primary-light);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(57, 203, 105, 0.1);
+}
+
+/* --- أيقونات التخصصات (تلوين مختلف لكل تخصص عشان الراحة البصرية) --- */
+.specialty-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    transition: 0.3s;
+}
+
+.specialty-icon span { font-size: 35px; }
+
+/* ألوان مخصصة لكل تخصص تدي فخامة للموقع */
+.icon-doctor { background: #E8F5EE; color: var(--primary-light); }
+.icon-nurse { background: #Eef2ff; color: #4F46E5; }
+.icon-teacher { background: #FFF4E5; color: #F59E0B; }
+.icon-coach { background: #FDE8E8; color: #E02424; }
+
+.specialty-card:hover .specialty-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* --- نصوص الكارت --- */
+.specialty-card h3 {
+    font-size: 20px;
+    color: var(--primary-dark);
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.specialty-card p {
+    font-size: 14px;
+    color: var(--text-grey);
+    line-height: 1.5;
+}
+
+/* --- رابط الرجوع --- */
+.back-link-alt {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-grey);
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.back-link-alt:hover {
+    color: var(--primary-dark);
+}
+
+.back-link-alt span {
+    font-size: 18px;
+}
+
+/* --- متجاوب مع الموبايل --- */
+@media (max-width: 600px) {
+    .specialty-grid {
+        grid-template-columns: 1fr; /* كارت واحد في السطر للموبايل */
+        gap: 15px;
+    }
+    .specialty-card {
+        padding: 25px 20px;
+    }
+}

@@ -1,0 +1,202 @@
+:root {
+    --gleam-dark:  #0D524F;
+    --gleam-green: #39CB69;
+    --bg-card:     #F0FDF4;
+    --bg-page:     #F8FAF9;
+    --transition:  0.3s ease-in-out;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg-page); color: #1A1A1A;
+    overflow-x: hidden; min-height: 100vh;
+}
+
+/* ── Header ── */
+.main-header {
+    padding: 14px 20px; background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(10px);
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
+.header-container {
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 720px; margin: auto;
+}
+.header-left { display: flex; align-items: center; gap: 12px; }
+.logo-large  { height: 38px; }
+.header-title { font-size: 18px; font-weight: 800; color: var(--gleam-dark); }
+.back-btn {
+    background: none; border: none; cursor: pointer;
+    color: var(--gleam-dark); display: flex; align-items: center;
+    padding: 6px; border-radius: 50%; transition: background 0.2s;
+}
+.back-btn:hover { background: rgba(13,82,79,0.08); }
+.back-btn .material-symbols-outlined { font-size: 22px; }
+.action-btn  { position: relative; cursor: pointer; color: var(--gleam-dark); }
+.action-btn .material-symbols-outlined { font-size: 26px; }
+.badge {
+    position: absolute; top: -4px; right: -4px;
+    background: red; color: white; font-size: 10px; font-weight: bold;
+    width: 17px; height: 17px; display: flex;
+    align-items: center; justify-content: center; border-radius: 50%;
+}
+.badge.hidden { display: none; }
+
+/* ── Full Loading ── */
+.full-loading {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 14px; min-height: 60vh; color: #aaa;
+}
+.full-loading .material-symbols-outlined { font-size: 48px; color: var(--gleam-green); }
+.full-loading p { font-size: 16px; }
+
+/* ── Main ── */
+.profile-main {
+    max-width: 720px; margin: 0 auto;
+    padding: 24px 20px 40px;
+}
+.profile-main.hidden { display: none; }
+
+/* ── Photo Card — Dart "Family Card" ── */
+.photo-card {
+    background: var(--bg-card);
+    border: 1.5px solid rgba(57,203,105,0.2);
+    border-radius: 24px; padding: 28px 20px;
+    margin-bottom: 28px;
+}
+.photo-pair {
+    display: flex; align-items: center;
+    justify-content: space-evenly; gap: 10px;
+}
+.avatar-group {
+    display: flex; flex-direction: column;
+    align-items: center; gap: 10px;
+}
+.avatar-wrap {
+    position: relative; width: 100px; height: 100px;
+    border-radius: 50%; overflow: visible;
+}
+.avatar-wrap img {
+    width: 100px; height: 100px; border-radius: 50%;
+    object-fit: cover; border: 2.5px solid white;
+    box-shadow: 0 6px 20px rgba(13,82,79,0.15);
+    background: #e8f5e9;
+}
+/* Camera overlay button — Dart Positioned camera_alt */
+.camera-btn {
+    position: absolute; right: 0; bottom: 0;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--gleam-dark); color: white;
+    border: 2.5px solid white; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: var(--transition);
+}
+.camera-btn:hover { background: var(--gleam-green); color: var(--gleam-dark); }
+.camera-btn .material-symbols-outlined { font-size: 16px; }
+.camera-btn.child-cam { background: #2563EB; }
+.camera-btn.child-cam:hover { background: #60A5FA; color: white; }
+
+.hidden-file-input { display: none; }
+
+.avatar-label {
+    font-size: 13px; font-weight: 800;
+    color: var(--gleam-dark);
+}
+.avatar-label.child-label { color: #2563EB; }
+
+.upload-status {
+    font-size: 12px; color: #888;
+    display: flex; align-items: center; gap: 5px;
+}
+.upload-status.hidden { display: none; }
+
+.swap-icon .material-symbols-outlined {
+    font-size: 28px;
+    color: rgba(57,203,105,0.45);
+}
+
+/* ── Form Sections ── */
+.form-section {
+    margin-bottom: 6px;
+}
+.form-section-title {
+    font-size: 17px; font-weight: 800; color: var(--gleam-dark);
+    margin-bottom: 18px;
+    display: flex; align-items: center; gap: 8px;
+}
+.form-section-title .material-symbols-outlined { font-size: 20px; }
+
+.field-group { margin-bottom: 20px; }
+.field-group label {
+    display: block; font-size: 13px; font-weight: 700;
+    color: #555; margin-bottom: 8px;
+}
+.optional-tag {
+    font-size: 11px; color: #aaa; font-weight: 600;
+}
+
+/* Input wrap with icon */
+.input-wrap {
+    display: flex; align-items: center; gap: 0;
+    background: white; border: 1.5px solid #e0e0e0;
+    border-radius: 14px; overflow: hidden;
+    transition: border-color 0.2s;
+}
+.input-wrap:focus-within { border-color: var(--gleam-green); }
+.input-icon {
+    font-size: 18px; color: var(--gleam-dark);
+    padding: 0 12px; flex-shrink: 0;
+}
+.input-wrap input {
+    flex: 1; border: none; outline: none;
+    padding: 14px 14px 14px 0;
+    font-size: 14px; font-family: inherit;
+    color: #1A1A1A; background: transparent;
+}
+.input-wrap input::placeholder { color: #bbb; }
+
+/* Textarea */
+#childNotesInput {
+    width: 100%; padding: 14px 16px;
+    border: 1.5px solid #e0e0e0; border-radius: 14px;
+    font-size: 14px; font-family: inherit;
+    resize: vertical; outline: none;
+    transition: border-color 0.2s; background: white;
+    color: #1A1A1A; line-height: 1.5;
+}
+#childNotesInput:focus { border-color: var(--gleam-green); }
+#childNotesInput::placeholder { color: #bbb; }
+
+.field-hint {
+    font-size: 12px; color: #aaa; margin-top: 6px;
+}
+
+/* Section divider */
+.section-divider {
+    height: 1px; background: #e8e8e8;
+    margin: 24px 0;
+}
+
+/* ── Save Button ── */
+.save-section { margin-top: 28px; }
+.btn-save {
+    width: 100%; padding: 16px;
+    background: var(--gleam-dark); color: white;
+    border: none; border-radius: 16px;
+    font-size: 16px; font-weight: 800;
+    cursor: pointer; font-family: inherit;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    transition: var(--transition);
+    box-shadow: 0 6px 20px rgba(13,82,79,0.25);
+}
+.btn-save:hover:not(:disabled) {
+    background: var(--gleam-green); color: var(--gleam-dark);
+    box-shadow: 0 8px 24px rgba(57,203,105,0.3);
+}
+.btn-save:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ── Spin ── */
+.spin { animation: spinAnim 1.2s linear infinite; display: inline-block; }
+@keyframes spinAnim { to { transform: rotate(360deg); } }
