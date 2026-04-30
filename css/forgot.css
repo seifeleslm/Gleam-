@@ -1,0 +1,78 @@
+/* --- الإعدادات الأساسية والكارت --- */
+body {
+    background-color: #F8FAF9;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.auth-header { padding: 30px 0; width: 100%; }
+.auth-header .container { max-width: 1300px; margin: 0 auto; padding: 0 30px; }
+.auth-logo { height: 45px; object-fit: contain; }
+
+.auth-wrapper { flex: 1; display: flex; justify-content: center; align-items: center; padding: 20px; }
+.auth-card {
+    background: #FFFFFF;
+    width: 100%;
+    max-width: 450px;
+    padding: 50px 40px;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+/* --- محتوى الصفحة --- */
+.auth-titles { text-align: center; margin-bottom: 35px; }
+.forgot-image {
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+.auth-titles h1 { font-size: 28px; color: var(--primary-dark); font-weight: 800; margin-bottom: 10px; }
+.auth-titles p { color: var(--text-grey); font-size: 15px; font-weight: 500; line-height: 1.6; }
+
+/* --- الفورم --- */
+.input-group { margin-bottom: 25px; }
+.input-group label { display: block; font-size: 14px; font-weight: 700; color: var(--primary-dark); margin-bottom: 8px; }
+.input-group input {
+    width: 100%; height: 55px; border: 2px solid #EAEAEA; border-radius: 14px; padding: 0 18px;
+    font-size: 16px; color: var(--text-main); font-weight: 500; transition: all 0.3s ease;
+}
+.input-group input:focus { outline: none; border-color: var(--primary-light); box-shadow: 0 0 0 4px rgba(57, 203, 105, 0.1); }
+.input-group input::placeholder { color: #B0B0B0; font-weight: 400; }
+
+.btn-submit {
+    width: 100%; height: 55px; background: var(--primary-dark); color: white; border: none;
+    border-radius: 16px; font-size: 18px; font-weight: 800; cursor: pointer; transition: all 0.3s ease;
+}
+.btn-submit:hover { background: #106663; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(13, 82, 79, 0.15); }
+
+/* --- رسالة النجاح (اللي بتظهر بعد الإرسال) --- */
+.hidden { display: none !important; }
+.success-content { text-align: center; padding: 20px 0; animation: fadeIn 0.5s ease; }
+.success-icon-wrapper {
+    width: 80px; height: 80px; background: #E8F5EE; color: var(--primary-light);
+    border-radius: 50%; display: flex; justify-content: center; align-items: center;
+    margin: 0 auto 20px auto;
+}
+.success-icon-wrapper span { font-size: 40px; }
+.success-content h2 { font-size: 26px; color: var(--primary-dark); font-weight: 800; margin-bottom: 10px; }
+.success-content p { font-size: 16px; color: var(--text-main); line-height: 1.6; margin-bottom: 15px; }
+.success-content strong { color: var(--primary-dark); font-weight: 700; }
+.success-content .small-text { font-size: 13px; color: var(--text-grey); }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- الفوتر (زر الرجوع) --- */
+.auth-footer { text-align: center; margin-top: 35px; padding-top: 25px; border-top: 1px solid #EAEAEA; }
+.back-link {
+    display: inline-flex; align-items: center; gap: 8px; color: var(--text-grey);
+    font-weight: 600; text-decoration: none; font-size: 15px; transition: 0.3s;
+}
+.back-link:hover { color: var(--primary-dark); }
+.back-link span { font-size: 18px; }
+
+@media (max-width: 500px) { .auth-card { padding: 40px 25px; border-radius: 20px; } }

@@ -1,0 +1,254 @@
+:root {
+    --gleam-dark:  #0D524F;
+    --gleam-green: #39CB69;
+    --bg-page:     #F8FAF9;
+    --cat-medical:     #EF4444;
+    --cat-educational: #3B82F6;
+    --cat-sports:      #F97316;
+    --transition:  0.3s ease-in-out;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg-page); color: #1A1A1A;
+    overflow-x: hidden; min-height: 100vh;
+}
+
+/* ── Header ── */
+.main-header {
+    padding: 14px 20px; background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(10px);
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
+.header-container {
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 900px; margin: auto;
+}
+.header-left  { display: flex; align-items: center; gap: 12px; }
+.logo-large   { height: 38px; }
+.header-title { font-size: 18px; font-weight: 800; color: var(--gleam-dark); }
+.back-btn {
+    background: none; border: none; cursor: pointer;
+    color: var(--gleam-dark); display: flex; align-items: center;
+    padding: 6px; border-radius: 50%; transition: background 0.2s;
+}
+.back-btn:hover { background: rgba(13,82,79,0.08); }
+.back-btn .material-symbols-outlined { font-size: 22px; }
+.action-btn  { position: relative; cursor: pointer; color: var(--gleam-dark); }
+.action-btn .material-symbols-outlined { font-size: 26px; }
+.badge {
+    position: absolute; top: -4px; right: -4px;
+    background: red; color: white; font-size: 10px; font-weight: bold;
+    width: 17px; height: 17px; display: flex;
+    align-items: center; justify-content: center; border-radius: 50%;
+}
+.badge.hidden { display: none; }
+
+/* ── Filter Chips Bar — Dart SingleChildScrollView chips ── */
+.filter-chips-bar {
+    background: white;
+    padding: 14px 20px;
+    display: flex; gap: 10px; overflow-x: auto;
+    scrollbar-width: none;
+    border-bottom: 1px solid #f0f0f0;
+    position: sticky; top: 70px; z-index: 90;
+}
+.filter-chips-bar::-webkit-scrollbar { display: none; }
+
+.chip-btn {
+    flex-shrink: 0;
+    display: flex; align-items: center; gap: 5px;
+    padding: 8px 16px; border-radius: 30px;
+    border: 1.5px solid #e0e0e0; background: #f5f5f5;
+    font-size: 13px; font-weight: 700; color: #666;
+    cursor: pointer; font-family: inherit;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+.chip-btn .material-symbols-outlined { font-size: 15px; }
+.chip-btn:hover { border-color: var(--gleam-dark); color: var(--gleam-dark); }
+.chip-btn.active {
+    background: var(--gleam-green); border-color: var(--gleam-green);
+    color: var(--gleam-dark);
+}
+/* Category-tinted active states */
+.chip-btn[data-category="Medical"].active    { background: var(--cat-medical);     border-color: var(--cat-medical);     color: white; }
+.chip-btn[data-category="Educational"].active{ background: var(--cat-educational); border-color: var(--cat-educational); color: white; }
+.chip-btn[data-category="Sports"].active     { background: var(--cat-sports);      border-color: var(--cat-sports);      color: white; }
+
+/* ── Toolbar Row ── */
+.toolbar-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 20px; max-width: 900px; margin: 0 auto;
+}
+.toolbar-title {
+    font-size: 18px; font-weight: 800; color: var(--gleam-dark);
+}
+.btn-clear-all {
+    display: flex; align-items: center; gap: 5px;
+    background: none; border: none; cursor: pointer;
+    color: #EF4444; font-size: 13px; font-weight: 700;
+    font-family: inherit; padding: 6px 10px; border-radius: 8px;
+    transition: background 0.2s;
+}
+.btn-clear-all:hover { background: rgba(239,68,68,0.07); }
+.btn-clear-all .material-symbols-outlined { font-size: 18px; }
+
+/* ── Main ── */
+.reports-main {
+    max-width: 900px; margin: 0 auto;
+    padding: 4px 20px 60px;
+}
+
+/* ── Loading / Empty ── */
+.loading-state, .empty-state {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 14px; padding: 80px 20px; text-align: center;
+}
+.loading-state .material-symbols-outlined { font-size: 48px; color: var(--gleam-green); }
+.loading-state p { font-size: 15px; color: #aaa; }
+.empty-state .material-symbols-outlined { font-size: 72px; color: #ddd; }
+.empty-state h3 { font-size: 20px; font-weight: 800; color: #888; }
+.empty-state p  { font-size: 14px; color: #aaa; max-width: 320px; line-height: 1.6; }
+.hidden { display: none !important; }
+
+/* ── Report Card — Dart Card widget ── */
+.report-card {
+    background: white; border-radius: 20px;
+    border: 1.5px solid #f0f0f0;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    padding: 18px; margin-bottom: 20px;
+    transition: box-shadow 0.2s;
+}
+.report-card:hover { box-shadow: 0 6px 22px rgba(0,0,0,0.1); }
+
+/* Card header row — Dart Row(avatar, name+date, badge) */
+.card-header {
+    display: flex; align-items: flex-start; gap: 14px;
+    margin-bottom: 14px;
+}
+.provider-avatar {
+    width: 50px; height: 50px; border-radius: 50%;
+    object-fit: cover; background: #f0f0f0;
+    border: 2px solid #f0f0f0; flex-shrink: 0;
+}
+.provider-avatar-placeholder {
+    width: 50px; height: 50px; border-radius: 50%;
+    background: #f3f4f6; display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0;
+}
+.provider-avatar-placeholder .material-symbols-outlined {
+    font-size: 28px; color: #ccc;
+}
+.provider-info { flex: 1; min-width: 0; }
+.provider-full-name {
+    font-size: 15px; font-weight: 800; color: var(--gleam-dark);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    margin-bottom: 4px;
+}
+.report-date {
+    font-size: 12px; color: #bbb; font-weight: 600;
+}
+
+/* Category badge — Dart Container with catColor */
+.cat-badge {
+    flex-shrink: 0; display: flex; align-items: center; gap: 4px;
+    padding: 4px 10px; border-radius: 8px;
+    font-size: 11px; font-weight: 800;
+    border: 1px solid;
+}
+.cat-badge .material-symbols-outlined { font-size: 12px; }
+/* Medical */
+.cat-medical {
+    color: var(--cat-medical);
+    background: rgba(239,68,68,0.08);
+    border-color: rgba(239,68,68,0.25);
+}
+/* Educational */
+.cat-educational {
+    color: var(--cat-educational);
+    background: rgba(59,130,246,0.08);
+    border-color: rgba(59,130,246,0.25);
+}
+/* Sports */
+.cat-sports {
+    color: var(--cat-sports);
+    background: rgba(249,115,22,0.08);
+    border-color: rgba(249,115,22,0.25);
+}
+
+/* Divider */
+.card-divider { height: 1px; background: #f3f4f6; margin: 12px 0; }
+
+/* Card content — notes + recommendations */
+.content-label {
+    font-size: 14px; font-weight: 800;
+    color: var(--gleam-dark); margin-bottom: 6px;
+}
+.content-text {
+    font-size: 14px; color: #555; line-height: 1.6;
+    margin-bottom: 14px;
+}
+
+/* Attachment button — Dart InkWell blue container */
+.attachment-btn {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 15px; border-radius: 12px;
+    background: rgba(59,130,246,0.06);
+    border: 1.5px solid rgba(59,130,246,0.2);
+    cursor: pointer; text-decoration: none;
+    transition: var(--transition); margin-top: 6px;
+    width: 100%;
+}
+.attachment-btn:hover { background: rgba(59,130,246,0.12); }
+.attachment-btn .material-symbols-outlined {
+    font-size: 22px; color: #3B82F6; flex-shrink: 0;
+}
+.attachment-filename {
+    flex: 1; font-size: 14px; font-weight: 700;
+    color: #3B82F6; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.attachment-download .material-symbols-outlined {
+    font-size: 18px; color: #3B82F6;
+}
+
+/* ── Spin ── */
+.spin { animation: spinAnim 1.2s linear infinite; display: inline-block; }
+@keyframes spinAnim { to { transform: rotate(360deg); } }
+
+/* ── Confirm Clear Modal ── */
+.modal-overlay {
+    position: fixed; inset: 0; z-index: 500;
+    background: rgba(0,0,0,0.5);
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+}
+.modal-overlay.hidden { display: none; }
+.confirm-modal-card {
+    background: white; border-radius: 24px;
+    padding: 32px 28px; max-width: 380px; width: 100%;
+    text-align: center;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+    animation: popIn 0.3s cubic-bezier(0.175,0.885,0.32,1.275);
+}
+@keyframes popIn { from { transform: scale(0.75); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.confirm-icon .material-symbols-outlined {
+    font-size: 48px; color: #EF4444; display: block; margin-bottom: 12px;
+}
+.confirm-modal-card h2 { font-size: 20px; color: #1A1A1A; margin-bottom: 10px; }
+.confirm-modal-card p  { font-size: 13px; color: #777; line-height: 1.6; margin-bottom: 22px; }
+.confirm-actions { display: flex; gap: 10px; }
+.btn-confirm-cancel {
+    flex: 1; padding: 12px; border: 1.5px solid #e0e0e0;
+    border-radius: 12px; background: none; cursor: pointer;
+    font-weight: 600; font-family: inherit; color: #888;
+    transition: var(--transition);
+}
+.btn-confirm-cancel:hover { background: #f5f5f5; }
+.btn-confirm-delete {
+    flex: 1.5; padding: 12px; background: #EF4444; color: white;
+    border: none; border-radius: 12px; font-size: 14px; font-weight: 700;
+    cursor: pointer; font-family: inherit; transition: var(--transition);
+}
+.btn-confirm-delete:hover { background: #DC2626; }
+.btn-confirm-delete:disabled { opacity: 0.6; cursor: not-allowed; }

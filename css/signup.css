@@ -1,0 +1,123 @@
+/* الاعتماد على متغيرات style.css */
+
+body {
+    background-color: #F8FAF9;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- الهيدر --- */
+.auth-header { padding: 30px 0; width: 100%; }
+.auth-header .container { max-width: 1300px; margin: 0 auto; padding: 0 30px; text-align: center; }
+.auth-logo { height: 50px; object-fit: contain; }
+
+/* --- الحاوية الرئيسية --- */
+.role-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 20px 60px 20px;
+}
+
+.role-container {
+    width: 100%;
+    max-width: 750px; /* مساحة عريضة عشان الكروت تيجي جنب بعض */
+}
+
+/* --- العناوين --- */
+.role-titles { text-align: center; margin-bottom: 50px; }
+.role-titles h1 { font-size: 36px; color: var(--primary-dark); font-weight: 800; margin-bottom: 15px; }
+.role-titles p { color: var(--text-grey); font-size: 18px; font-weight: 500; }
+
+/* --- الكروت --- */
+.cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.role-card {
+    background: #FFFFFF;
+    border: 2px solid #EAEAEA;
+    border-radius: 24px;
+    padding: 40px 30px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.02);
+}
+
+.role-card:hover {
+    border-color: var(--primary-light);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(57, 203, 105, 0.1);
+}
+
+/* --- الأيقونات داخل الكروت --- */
+.card-icon {
+    width: 80px;
+    height: 80px;
+    background: #E8F5EE;
+    color: var(--primary-light);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+    transition: 0.3s;
+}
+
+.card-icon span { font-size: 40px; }
+
+/* تمييز لون أيقونة مقدم الخدمة */
+.provider-icon {
+    background: #e6f0ef;
+    color: var(--primary-dark);
+}
+
+.role-card:hover .card-icon {
+    transform: scale(1.1);
+}
+
+/* --- نصوص الكروت --- */
+.card-content h3 {
+    font-size: 22px;
+    color: var(--primary-dark);
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.card-content p {
+    font-size: 15px;
+    color: var(--text-grey);
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* --- السهم السفلي للكارت --- */
+.card-action {
+    margin-top: auto;
+    color: #C0C0C0;
+    transition: 0.3s;
+}
+
+.card-action span { font-size: 28px; }
+.role-card:hover .card-action { color: var(--primary-light); transform: translateX(5px); }
+
+/* --- الفوتر (رابط الدخول) --- */
+.role-footer { text-align: center; font-size: 16px; font-weight: 500; color: var(--text-grey); }
+.role-footer a { color: var(--primary-dark); font-weight: 800; text-decoration: none; margin-left: 5px; transition: 0.3s; }
+.role-footer a:hover { text-decoration: underline; color: var(--primary-light); }
+
+/* --- الموبايل --- */
+@media (max-width: 768px) {
+    .cards-grid { grid-template-columns: 1fr; gap: 20px; }
+    .role-titles h1 { font-size: 28px; }
+    .role-titles p { font-size: 16px; }
+}

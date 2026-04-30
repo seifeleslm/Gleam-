@@ -1,0 +1,108 @@
+/* --- الألوان والمتغيرات الأساسية للمشروع كله --- */
+:root {
+    --primary-dark: #0D524F;
+    --primary-light: #16807A;
+    --accent: #39CB69;
+    --text-main: #1A1A1A;
+    --text-grey: #666666;
+    --glass-bg: rgba(255, 255, 255, 0.85);
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Plus Jakarta Sans', sans-serif; 
+    scroll-behavior: smooth;
+}
+
+body { 
+    background-color: #F8FAF9; 
+    color: var(--text-main); 
+    overflow-x: hidden; 
+}
+
+.container { 
+    width: 90%; 
+    max-width: 1300px; 
+    margin: 0 auto; 
+    position: relative; 
+}
+
+/* ================= Global Dark Mode ================= */
+html.dark-mode {
+    --bg-page: #111c17;
+    --bg-faded: #1a2520;
+    --bg-card: #1a2520;
+    --gleam-dark: #39CB69;
+    --gleam-green: #39CB69;
+    --text-main: #e4e4e4;
+    --text-grey: #aaaaaa;
+}
+
+html.dark-mode body {
+    background-color: var(--bg-page);
+    color: var(--text-main);
+}
+
+/* Header & Core elements */
+html.dark-mode .main-header { background: rgba(17, 28, 23, 0.95); box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+html.dark-mode .header-title { color: #39CB69; }
+html.dark-mode .back-btn { color: #aaa; }
+html.dark-mode .back-btn:hover { background: rgba(57, 203, 105, 0.1); }
+html.dark-mode .action-btn { color: #39CB69; }
+
+/* Bookings & Reports specific */
+html.dark-mode .status-tabs .tab-btn { background: transparent; border-color: #333; color: #aaa; }
+html.dark-mode .status-tabs .tab-btn.active { background: #39CB69; border-color: #39CB69; color: #111c17; }
+html.dark-mode .booking-card { background: #1a2520; border-color: #2a3a2f; }
+html.dark-mode .booking-meta .meta-row { color: #aaa; }
+html.dark-mode .service-category-chip { background: #2a3a2f; color: #ddd; }
+html.dark-mode .card-divider { background: #2a3a2f; }
+html.dark-mode .btn-cancel-booking { border-color: #fca5a5; color: #fca5a5; }
+html.dark-mode .filter-chips-bar { background: var(--bg-page); border-color: #2a3a2f; }
+html.dark-mode .chip-btn { background: #1a2520; border-color: #333; color: #aaa; }
+html.dark-mode .chip-btn:hover { border-color: #39CB69; color: #39CB69; }
+html.dark-mode .toolbar-title { color: #fff; }
+html.dark-mode .report-card { background: #1a2520; border-color: #2a3a2f; }
+html.dark-mode .provider-avatar-placeholder { background: #2a3a2f; }
+html.dark-mode .provider-avatar-placeholder .material-symbols-outlined { color: #666; }
+html.dark-mode .content-label { color: #fff; }
+html.dark-mode .content-text { color: #aaa; }
+html.dark-mode .attachment-btn { background: rgba(59, 130, 246, 0.1); border-color: rgba(59, 130, 246, 0.3); }
+
+/* Modals & Inputs */
+html.dark-mode .modal-overlay { background: rgba(0,0,0,0.7); }
+html.dark-mode .rating-modal-card, html.dark-mode .confirm-modal-card { background: #1a2520; }
+html.dark-mode .rating-modal-card h2, html.dark-mode .confirm-modal-card h2 { color: #fff; }
+html.dark-mode #ratingComment { background: transparent; color: #fff; border-color: #444; }
+html.dark-mode .btn-cancel-modal, html.dark-mode .btn-confirm-cancel { border-color: #444; color: #aaa; }
+html.dark-mode .btn-cancel-modal:hover, html.dark-mode .btn-confirm-cancel:hover { background: #2a3a2f; }
+
+/* Profile page */
+html.dark-mode .photo-card { background: #1a2520; border-color: #2a3a2f; }
+html.dark-mode .input-wrap { background: transparent; border-color: #444; }
+html.dark-mode .input-wrap input { color: #fff; }
+html.dark-mode #childNotesInput { background: transparent; color: #fff; border-color: #444; }
+html.dark-mode .form-section-title { color: #39CB69; }
+html.dark-mode .field-group label { color: #aaa; }
+html.dark-mode .section-divider { background: #2a3a2f; }
+
+/* Notifications page */
+html.dark-mode .notif-page-hero { background: linear-gradient(135deg, #1a2520 0%, #111c17 100%); border-color: #2a3a2f; }
+html.dark-mode .notif-hero-text h1 { color: #39CB69; }
+html.dark-mode .notif-hero-text p { color: #aaa; }
+html.dark-mode .btn-mark-all { border-color: #39CB69; color: #39CB69; }
+html.dark-mode .btn-mark-all:hover { background: #39CB69; color: #111c17; }
+html.dark-mode .notif-card { background: #1a2520; border-color: #2a3a2f; }
+html.dark-mode .notif-card.unread { background: #112a1a; border-color: #39CB69; }
+html.dark-mode .notif-avatar { background: rgba(57, 203, 105, 0.15); }
+html.dark-mode .notif-card.read .notif-avatar { background: #2a3a2f; }
+html.dark-mode .notif-title { color: #fff; }
+html.dark-mode .notif-body { color: #aaa; }
+
+/* Empty/Loading states globally */
+html.dark-mode .empty-state h3, html.dark-mode .pn-empty h3 { color: #fff; }
+html.dark-mode .empty-state p, html.dark-mode .pn-empty p { color: #aaa; }
+html.dark-mode .empty-state .material-symbols-outlined, html.dark-mode .pn-empty .material-symbols-outlined { color: #333; }
+html.dark-mode .loading-state p, html.dark-mode .pn-loading p, html.dark-mode .full-loading p { color: #aaa; }
